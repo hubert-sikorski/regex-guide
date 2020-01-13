@@ -2,7 +2,7 @@
 
 # Meta signs
 
-* `^` - Beggining of a pattern
+* `^` - Beginning of a pattern
 
 ```javascript
     const regex = /^he/;
@@ -30,7 +30,7 @@
 ```javascript
     const regex = /.an.a/;
 
-    const correct = ['panda', 'fanta', 'manna', 'manga', 'mania'];
+    const correct = ['panda', 'fanta', 'manna', 'manga', '5an7a'];
     const wrong = ['banana', 'maniac', 'panic', 'sandy', 'dance'];
 ```
 
@@ -80,7 +80,7 @@ specified characters (i.e. [r], [mts], [azdg])
     const correct = ['harry', 'harri', 'hurry', 'hurri'];
     const wrong = ['harr', 'hrr', 'hurryi', 'ha', 'arry'];
 
-    const regex2 = /(eighth|8th|8)(street|avenue)/;
+    const regex2 = /(eighth|8th|8) (street|avenue)/;
 
     const correct2 = ['eighth street', '8th street', 'eighth avenue', '8th avenue', '8 street'];
     const wrong2 = ['8 streets', '9th avenue', 'tenth street', 'one ave', 'street avenue'];
@@ -133,7 +133,7 @@ specified characters (i.e. [r], [mts], [azdg])
     const wrong2 = ['banaba', 'ban', 'banannnnn', 'bananan', 'banana mammas'];
 ```
 
-* `{}` - exact amount of elements before this mark
+* `{}` - Exact amount of elements before this mark
 
 ```javascript
     const regex = /[0-9]{4}/;
@@ -142,7 +142,7 @@ specified characters (i.e. [r], [mts], [azdg])
     const wrong = ['12345', '234', '200000', '18', '700'];
 ```
 
-* `{ ,}` - exact amount or more elements before this mark
+* `{ ,}` - Exact amount or more elements before this mark
 
 ```javascript
     const regex = /[ah]{4,}/;
@@ -151,11 +151,106 @@ specified characters (i.e. [r], [mts], [azdg])
     const wrong = ['haa', 'ha', 'hehe', 'aha', 'hyhy'];
 ```
 
-* `{ , }` - range specifying amount of elements before this mark
+* `{ , }` - Range specifying amount of elements before this mark
 
 ```javascript
     const regex = /d.{2,4}y/;
 
     const correct = ['duty', 'dizzy', 'daily', 'donkey', 'deploy'];
     const wrong = ['dark', 'display', 'devil', 'dad', 'deployed'];
+```
+
+# Special symbols
+
+If you want to put special symbol inside regular expression you have yo precede
+it with `\` sign
+
+* `\.`
+
+```javascript
+    const regex = /[0-9]{1-3}\.[0-9]{1-3}\.[0-9]{1-3}\.[0-9]{1-3}/;
+
+    const correct = ['128.0.0.2', '123.456.789.000', '1.1.1.1', '01.01.01.10', '1.23.456.789'];
+    const wrong = ['128-0-0-2', '123.1', '1.23.4567.89', '.8.9', '.01.'];
+```
+
+* `\*`
+
+```javascript
+    const regex = /\*.+/;
+
+    const correct = ['*nothing', '*HAL9000', '*1', '*christmas', '*2999 dollars please'];
+    const wrong = ['nothing*', 'nothing', '*nothing*', '*nervous* nancy', '***alert***'];
+```
+
+* `\/`
+
+```javascript
+    const regex = /^\/\/$/;
+
+    const correct = ['//'];
+    const wrong = ['/////', '/headers', '/user/1'];
+```
+
+* `\?`
+
+```javascript
+    const regex = /^.+\?$/;
+
+    const correct = ['Is this it?', 'Am I correct?', 'Baby?', 'hmm?', 'y?'];
+    const wrong = ['?', 'Am I correct', 'I am wrong example', 'Do not copy me', '?Guys?'];
+```
+
+* `\:`
+
+```javascript
+    const regex = /^.+\:$/;
+
+    const correct = ['Look at these:', 'Question:', '1:'];
+    const wrong = [':', ':Question', '::Hey::'];
+```
+
+* `\^`
+
+```javascript
+    const regex = /.*\^/;
+
+    const correct = ['This is ^', 'Look^', '2^', '^', 'He110    ^'];
+    const wrong = ['This is &', '^^^', '^Look^', '2^2', '^ 1'];
+```
+
+* `\+`
+
+```javascript
+    const regex = /[0-9]+\+[0-9]+/;
+
+    const correct = ['10+11', '999+999', '0+0', '65+35', '1+1000'];
+    const wrong = ['333', '22-17', '10 + 11', '0+0 ', '+89'];
+```
+
+* `\\`
+
+```javascript
+    const regex = /c\:\\ /;
+
+    const correct = ['c:\ '];
+    const wrong = ['c:\\', 'c\ ', 'c\:'];
+```
+
+* `\=`
+
+```javascript
+    const regex = /[0-9]+\+[0-9]+\=[0-9]+/;
+
+    const correct = ['19+20=39', '0+0=0', '4+2=42', '10+10=0', '22222+55555=3186726318762'];
+    const wrong = ['19-20=39', '0 + 0 = 0', ' 4+2=42', '10+11' '3+0='];
+```
+
+* `\|`
+
+```javascript
+    const regex = /x\|\|y/;
+
+    const correct = ['x||y'];
+    const wrong = ['x--y', 'x(x||y)', 'x || y'];
 ```
