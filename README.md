@@ -1,8 +1,16 @@
 ![RegEx](img/regex.png)
 
+## Table of Contents
+
+- [Meta signs](#meta-signs)
+- [Special symbols](#special-symbols)
+- [Flags](#flags)
+- [Sign classes](#sign-classes)
+- [Functions](#functions)
+
 # Meta signs
 
-* `^` - Beginning of a pattern
+- `^` - Beginning of a pattern
 
 ```javascript
     const regex = /^he/;
@@ -11,7 +19,7 @@
     const wrong = ['she', 'historic', 'the', 'chef', 'wheel'];
 ```
 
-* `$` - End of a pattern
+- `$` - End of a pattern
 
 ```javascript
     const regex = /le$/;
@@ -25,7 +33,7 @@
     const wrong2 = ['loner', 'money', 'phone', 'clone', 'iron'];
 ```
 
-* `.` - Any single character
+- `.` - Any single character
 
 ```javascript
     const regex = /.an.a/;
@@ -34,7 +42,7 @@
     const wrong = ['banana', 'maniac', 'panic', 'sandy', 'dance'];
 ```
 
-* `[]` - Any of given characters. You can give it a range of characters (i.e. [1-9]) or
+- `[]` - Any of given characters. You can give it a range of characters (i.e. [1-9]) or
 specified characters (i.e. [r], [mts], [azdg])
 
 ```javascript
@@ -49,7 +57,7 @@ specified characters (i.e. [r], [mts], [azdg])
     const wrong2 = ['Ba', '95', '4Z', '.9', 'XX'];
 ```
 
-* `[^]` - Any character not mentioned in the brackets
+- `[^]` - Any character not mentioned in the brackets
 
 ```javascript
     const regex = /ban[^se]/;
@@ -58,7 +66,7 @@ specified characters (i.e. [r], [mts], [azdg])
     const wrong = ['bans', 'bane'];
 ```
 
-* `|` - Any string divided with this mark
+- `|` - Any string divided with this mark
 
 ```javascript
     const regex = /[gt]o|low|before/;
@@ -72,7 +80,7 @@ specified characters (i.e. [r], [mts], [azdg])
     const wrong2 = ['eleven', '12', '14th'];
 ```
 
-* `()` - Capture group
+- `()` - Capture group
 
 ```javascript
     const regex = /h(a|u)rr(y|i)/;
@@ -86,7 +94,7 @@ specified characters (i.e. [r], [mts], [azdg])
     const wrong2 = ['8 streets', '9th avenue', 'tenth street', 'one ave', 'street avenue'];
 ```
 
-* `?` - 0 or 1 element before this mark. Can be placed after parentheses
+- `?` - 0 or 1 element before this mark. Can be placed after parentheses
 
 ```javascript
     const regex = /ro?uter/;
@@ -100,7 +108,7 @@ specified characters (i.e. [r], [mts], [azdg])
     const wrong2 = ['eighth', '8th', 'ball', 'eight balls', '8balls'];
 ```
 
-* `+` - 1 or more (up to infinite) elements before this mark
+- `+` - 1 or more (up to infinite) elements before this mark
 
 ```javascript
     const regex = /[0-9]+[abc]/;
@@ -119,7 +127,7 @@ specified characters (i.e. [r], [mts], [azdg])
     const wrong3 = [':Dd', ':DDDDdDDdDD', 'XD', ':'];
 ```
 
-* `*` - 0 or more (up to infinite) elements before this mark
+- `*` - 0 or more (up to infinite) elements before this mark
 
 ```javascript
     const regex = /[0-9]*[abc]/;
@@ -133,7 +141,7 @@ specified characters (i.e. [r], [mts], [azdg])
     const wrong2 = ['banaba', 'ban', 'banannnnn', 'bananan', 'banana mammas'];
 ```
 
-* `{}` - Exact amount of elements before this mark
+- `{}` - Exact amount of elements before this mark
 
 ```javascript
     const regex = /[0-9]{4}/;
@@ -142,7 +150,7 @@ specified characters (i.e. [r], [mts], [azdg])
     const wrong = ['12345', '234', '200000', '18', '700'];
 ```
 
-* `{ ,}` - Exact amount or more elements before this mark
+- `{ ,}` - Exact amount or more elements before this mark
 
 ```javascript
     const regex = /[ah]{4,}/;
@@ -151,7 +159,7 @@ specified characters (i.e. [r], [mts], [azdg])
     const wrong = ['haa', 'ha', 'hehe', 'aha', 'hyhy'];
 ```
 
-* `{ , }` - Range specifying amount of elements before this mark
+- `{ , }` - Range specifying amount of elements before this mark
 
 ```javascript
     const regex = /d.{2,4}y/;
@@ -162,10 +170,10 @@ specified characters (i.e. [r], [mts], [azdg])
 
 # Special symbols
 
-If you want to put special symbol inside regular expression you have yo precede
+If you want to put special symbol inside regular expression you have to precede
 it with `\` sign
 
-* `\.`
+- `\.`
 
 ```javascript
     const regex = /[0-9]{1-3}\.[0-9]{1-3}\.[0-9]{1-3}\.[0-9]{1-3}/;
@@ -174,7 +182,7 @@ it with `\` sign
     const wrong = ['128-0-0-2', '123.1', '1.23.4567.89', '.8.9', '.01.'];
 ```
 
-* `\*`
+- `\*`
 
 ```javascript
     const regex = /\*.+/;
@@ -183,7 +191,7 @@ it with `\` sign
     const wrong = ['nothing*', 'nothing', '*nothing*', '*nervous* nancy', '***alert***'];
 ```
 
-* `\/`
+- `\/`
 
 ```javascript
     const regex = /^\/\/$/;
@@ -192,7 +200,7 @@ it with `\` sign
     const wrong = ['/////', '/headers', '/user/1'];
 ```
 
-* `\?`
+- `\?`
 
 ```javascript
     const regex = /^.+\?$/;
@@ -201,7 +209,7 @@ it with `\` sign
     const wrong = ['?', 'Am I correct', 'I am wrong example', 'Do not copy me', '?Guys?'];
 ```
 
-* `\:`
+- `\:`
 
 ```javascript
     const regex = /^.+\:$/;
@@ -210,7 +218,7 @@ it with `\` sign
     const wrong = [':', ':Question', '::Hey::'];
 ```
 
-* `\^`
+- `\^`
 
 ```javascript
     const regex = /.*\^/;
@@ -219,7 +227,7 @@ it with `\` sign
     const wrong = ['This is &', '^^^', '^Look^', '2^2', '^ 1'];
 ```
 
-* `\+`
+- `\+`
 
 ```javascript
     const regex = /[0-9]+\+[0-9]+/;
@@ -228,7 +236,7 @@ it with `\` sign
     const wrong = ['333', '22-17', '10 + 11', '0+0 ', '+89'];
 ```
 
-* `\\`
+- `\\`
 
 ```javascript
     const regex = /c\:\\ /;
@@ -237,7 +245,7 @@ it with `\` sign
     const wrong = ['c:\\', 'c\ ', 'c\:'];
 ```
 
-* `\=`
+- `\=`
 
 ```javascript
     const regex = /[0-9]+\+[0-9]+\=[0-9]+/;
@@ -246,11 +254,101 @@ it with `\` sign
     const wrong = ['19-20=39', '0 + 0 = 0', ' 4+2=42', '10+11' '3+0='];
 ```
 
-* `\|`
+- `\|`
 
 ```javascript
     const regex = /x\|\|y/;
 
     const correct = ['x||y'];
     const wrong = ['x--y', 'x(x||y)', 'x || y'];
+```
+
+# Flags
+
+- `i` - Case insensitive
+- `g` - Global, every matching fragment in given text rather than first match
+- `m` - Multiline mode, match beginning or end of each line
+- `s` - Allows `.` to match newlines (:warning: This is not supported in all browsers)
+- `u` - Enables unicode support (:warning: This is not supported in all browsers)
+- `y` - Sticky, performs search at the given index (:warning: This is not supported in all browsers)
+
+# Sign classes
+
+- `\s` - Whitespace, tab, newline
+- `\S` - Not whitespace, tab or newline
+- `\w` - Every letter, digit and `_` mark
+- `\W` - Not letter, digit or `_` mark
+- `\d` - Every digit
+- `\D` - Every sign but not digit
+
+# Functions
+
+- `test()` - Checks if expression is in the text
+
+```javascript
+    const text = 'cat dog bird';
+    const regex = /cat/;
+    regex.test(text); // true
+
+    const regex2 = /^cat$/;
+    regex2.test(text); // false
+
+    const text2 = 'Australia is populated with descendants of British prisoners';
+    const regex3 = /[A-Z]{1}[^\s]+/;
+    regex3.test(text2); // true (Australia)
+```
+
+- `exec()` - Loops through given string and returns an array with information
+on first matching element
+
+```javascript
+    const regex = /d(b+)(d)/ig;
+    const result = regex.exec('cdbBdbsbz');
+    console.log(result[0]); // dbBd
+    console.log(result); // ['dbBd', 'bB', 'd', index:1, input:'cdbBdbsbz']
+
+    const regex2 = /ab*/g;
+    const text = 'abbcdefabh';
+    let array;
+    while ((array = regex2.exec(text)) !== null) {
+        let msg = `Found: ${array[0]} |`;
+        msg += ` Next search will begin with index: ${regex2.lastIndex}`;
+        console.log(msg);
+        // Found: abb | Next search will begin with index: 3
+        // Found: ab | Next search will begin with index: 9
+    }
+```
+
+- `match()` - Returns all matching elements
+
+```javascript
+    const text = 'Number1, Number2, Number3, Number4, Number5';
+    const regex = /Number[1-4A-C]/g;
+    console.log(text.match(regex)); // Number1, Number2, Number3, Number4
+
+    const regex2 = /d(b+)(d)/ig;
+    const result = 'cdbBdbsbz'.match(regex2); // dbBd
+```
+
+- `search()` - Returns index number of the first occurrence of given string
+
+```javascript
+    const text = 'Bojack Horseman';
+    const regex = /ja/gi;
+    console.log(`Index: ${text.search(regex)}`); // Index: 2
+```
+
+- `replace()` - Replaces element with a new one
+
+```javascript
+    const text = 'Vienna is the best city to live in according to new study';
+    const regex = /Vienna/g;
+    console.log(text.replace(regex, 'Detroit')); // Detroit is the best city to...
+
+    const text2 = 'Hello darkness my old friend...';
+    const regex2 = /old/;
+    const textEnhanced = text2.replace(regex2, match => {
+        return `beautiful ${match}`;
+    });
+    console.log(textEnhanced); // Hello darkness my beautiful old friend...
 ```
